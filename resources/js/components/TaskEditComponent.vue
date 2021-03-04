@@ -7,11 +7,11 @@
           </div>
           <div class="card cloudy-knoxville-gradient" style="margin-top: 20px;padding:0 30px 10px 30px;">
 
-            <form action="" method="post">
+            <form v-on:submit.prevent="submit">
               <input type="text" class="card col-md-12" name="text" placeholder=" 入力してください" style="margin-top: 20px;margin-bottom:15px;padding:14px;" v-model="todo.text">
               <!-- ↑v:bindでvalueにTaskListComponentから送られてきたデータを表示してる -->
 
-              <button href="" class="btn peach-gradient col-md-12" style="margin: 15px 0 10px 0;font-size:15px;">
+              <button type="submit" class="btn peach-gradient col-md-12" style="margin: 15px 0 10px 0;font-size:15px;">
                 変更する
               </button>
 
@@ -38,6 +38,12 @@
             axios.get('/api/todos/' + this.todoId)
                 .then((res) => {
                     this.todo = res.data;
+                });
+        },
+        submit(){
+          axios.put('/api/todos/'+this.todoId,this.todo)
+                .then((res)=>{
+                  this.$router.push({name:'todo.list'})
                 });
         }
     },
