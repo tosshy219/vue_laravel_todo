@@ -18,6 +18,12 @@ class TodoController extends Controller
     {
         return $todo;
     }
+    public function update(Request $request, Todo $todo)
+    {
+        $todo->update($request->all());
+        return $todo;
+    
+    }
     public function destroy(Todo $todo)
     {
         $todo->delete();
