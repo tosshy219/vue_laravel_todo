@@ -10,6 +10,10 @@ class TodoController extends Controller
     {
         return Todo::all();
     }
+    public function store(Request $request)
+    {
+        return Todo::create($request->all());
+    }
     public function edit(Todo $todo)
     {
         return $todo;
